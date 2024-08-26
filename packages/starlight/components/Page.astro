@@ -87,6 +87,7 @@ const pagefindEnabled =
 					data-pagefind-body={pagefindEnabled}
 					lang={Astro.props.entryMeta.lang}
 					dir={Astro.props.entryMeta.dir}
+					data-sb-object-id={['src/content/docs/', Astro.props.entry.id].join('')}
 				>
 					{/* TODO: Revisit how this logic flows. */}
 					<Banner {...Astro.props} />

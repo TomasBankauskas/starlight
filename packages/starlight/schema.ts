@@ -109,6 +109,8 @@ const StarlightFrontmatterSchema = (context: SchemaContext) =>
 		 * Note that the page will still be available when running Astro in development mode.
 		 */
 		draft: z.boolean().default(false),
+		/** The type of the visual editor model. Required. */
+		type: z.literal("page").optional(),
 	});
 /** Type of Starlight’s default frontmatter schema. */
 type DefaultSchema = ReturnType<typeof StarlightFrontmatterSchema>;

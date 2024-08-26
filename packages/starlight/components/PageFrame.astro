@@ -11,7 +11,7 @@ const { hasSidebar, labels } = Astro.props;
 		hasSidebar && (
 			<nav class="sidebar" aria-label={labels['sidebarNav.accessibleLabel']}>
 				<MobileMenuToggle {...Astro.props} />
-				<div id="starlight__sidebar" class="sidebar-pane">
+				<div id="starlight__sidebar" class="sidebar-pane" data-sb-object-id="src/data/sidebarConfig.json">
 					<div class="sidebar-content sl-flex">
 						<slot name="sidebar" />
 					</div>

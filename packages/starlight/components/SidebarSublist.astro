@@ -8,13 +8,13 @@ interface Props {
 	nested?: boolean;
 }
 
-const { sublist, nested } = Astro.props;
+const { sublist, nested, fieldPath = 'items' } = Astro.props;
 ---
 
-<ul class:list={{ 'top-level': !nested }}>
+<ul class:list={{ 'top-level': !nested }} {...(fieldPath ? {'data-sb-field-path': fieldPath} : {})}>
 	{
-		sublist.map((entry) => (
-			<li>
+		sublist.map((entry, index: number) => (
+			<li {...(fieldPath ? {'data-sb-field-path': `.${index}`} : {})}>
 				{entry.type === 'link' ? (
 					<a
 						href={entry.href}
@@ -37,7 +37,9 @@ const { sublist, nested } = Astro.props;
 					>
 						<summary>
 							<div class="group-label">
-								<span class="large">{entry.label}</span>
+								<span class="large">
+									{entry.label}
+								</span>
 								{entry.badge && (
 									<Badge
 										variant={entry.badge.variant}
@@ -48,7 +50,7 @@ const { sublist, nested } = Astro.props;
 							</div>
 							<Icon name="right-caret" class="caret" size="1.25rem" />
 						</summary>
-						<Astro.self sublist={entry.entries} nested />
+						<Astro.self sublist={entry.entries} fieldPath={false} nested />
 					</details>
 				)}
 			</li>

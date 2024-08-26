@@ -1,0 +1,29 @@
+{
+    "type": "sidebarConfig",
+    "items": [
+        {
+            "type": "sidebarLinkGroup",
+            "label": "Guides",
+            "items": [
+                {
+                    "type": "sidebarInternalLink",
+                    "label": "Example Guide",
+                    "slug": "guides/example"
+                },
+                {
+                    "type": "sidebarLink",
+                    "label": "Test",
+                    "link": "https://netlify.com"
+                }
+            ]
+        },
+        {
+            "type": "sidebarAutoLinkGroup",
+            "label": "Reference",
+            "autogenerate": {
+                "type": "sidebarAutoLinks",
+                "directory": "reference"
+            }
+        }
+    ]
+}

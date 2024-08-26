@@ -13,6 +13,7 @@ const imageAttrs = {
 	width: 400,
 	height: 400,
 	alt: image?.alt || '',
+	'data-sb-field-path': '.image' as const
 };
 
 let darkImage: ImageMetadata | undefined;
@@ -30,7 +31,7 @@ if (image) {
 }
 ---
 
-<div class="hero">
+<div class="hero" data-sb-field-path="hero">
 	{
 		darkImage && (
 			<Image
@@ -44,14 +45,14 @@ if (image) {
 	{rawHtml && <div class="hero-html sl-flex" set:html={rawHtml} />}
 	<div class="sl-flex stack">
 		<div class="sl-flex copy">
-			<h1 id={PAGE_TITLE_ID} data-page-title set:html={title} />
-			{tagline && <div class="tagline" set:html={tagline} />}
+			<h1 id={PAGE_TITLE_ID} data-page-title set:html={title} data-sb-field-path={data.hero.title ? '.title' : 'title'} />
+			{tagline && <div class="tagline" set:html={tagline} data-sb-field-path=".tagline" />}
 		</div>
 		{
 			actions.length > 0 && (
 				<div class="sl-flex actions">
-					{actions.map(({ attrs, icon, link: href, text, variant }) => (
-						<LinkButton {href} {variant} icon={icon?.name} {...attrs}>
+					{actions.map(({ attrs, icon, link: href, text, variant }, index: number) => (
+						<LinkButton {href} {variant} icon={icon?.name} data-sb-field-path={`.actions.${index}`} {...attrs}>
 							{text}
 							{icon?.html && <Fragment set:html={icon.html} />}
 						</LinkButton>
